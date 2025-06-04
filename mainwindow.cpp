@@ -135,3 +135,26 @@ void MainWindow::on_pushButton_5_clicked()
         this->ui->textOutput->setText(log);
     }
 }
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    if (!fileName.toStdString().size()) {
+        QMessageBox err;
+        err.setText("ERR: No File Selected");
+        err.exec();
+    } else {
+        QString log = "L'età media delle atlete che hanno vinto un oro è ";
+        short somma = 0, cont = 0;
+
+        for (auto el : array) {
+            if (el.getSex() != "Female" || el.getType_of_medal() != "Gold")
+                continue;
+            somma += el.getAge();
+            cont++;
+        }
+
+        float media = somma / cont;
+        log += QString::number(media) + " anni.";
+        this->ui->textOutput->setText(log);
+    }
+}

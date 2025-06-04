@@ -35,6 +35,7 @@ public:
     QPushButton *pushButton_3;
     QPushButton *pushButton_4;
     QPushButton *pushButton_5;
+    QPushButton *pushButton_6;
     QTextBrowser *textOutput;
     QMenuBar *menubar;
     QMenu *menuMenu;
@@ -51,7 +52,7 @@ public:
         centralwidget->setObjectName("centralwidget");
         verticalLayoutWidget = new QWidget(centralwidget);
         verticalLayoutWidget->setObjectName("verticalLayoutWidget");
-        verticalLayoutWidget->setGeometry(QRect(20, 10, 300, 271));
+        verticalLayoutWidget->setGeometry(QRect(10, 30, 311, 321));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(2);
         verticalLayout->setObjectName("verticalLayout");
@@ -80,6 +81,11 @@ public:
         pushButton_5->setObjectName("pushButton_5");
 
         verticalLayout->addWidget(pushButton_5);
+
+        pushButton_6 = new QPushButton(verticalLayoutWidget);
+        pushButton_6->setObjectName("pushButton_6");
+
+        verticalLayout->addWidget(pushButton_6);
 
         textOutput = new QTextBrowser(centralwidget);
         textOutput->setObjectName("textOutput");
@@ -112,6 +118,7 @@ public:
         pushButton_3->setText(QCoreApplication::translate("MainWindow", "3. Totale medaglie per nazione", nullptr));
         pushButton_4->setText(QCoreApplication::translate("MainWindow", "4. Nazioni con almeno 5 medaglie", nullptr));
         pushButton_5->setText(QCoreApplication::translate("MainWindow", "5. Giorno con maggiore numero di medaglie assegnate", nullptr));
+        pushButton_6->setText(QCoreApplication::translate("MainWindow", "6. Et\303\240 media atlete vincitrici di un oro", nullptr));
         menuMenu->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
     } // retranslateUi
 
