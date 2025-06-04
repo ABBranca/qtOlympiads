@@ -81,3 +81,8 @@ std::string Olympiad::getDate() const
 {
     return date;
 }
+
+std::string Olympiad::getCountry() const
+{
+    return country;
+}

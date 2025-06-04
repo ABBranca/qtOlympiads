@@ -23,6 +23,7 @@ public:
     std::string getSex() const;
     std::string getType_of_medal() const;
     std::string getDate() const;
+    std::string getCountry() const;
 };
 
 void OlympiadFromCSV(const std::string &filename, std::vector<Olympiad> &dati);

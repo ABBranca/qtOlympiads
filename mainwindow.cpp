@@ -2,6 +2,7 @@
 #include <QFileDialog>
 #include "olympiad.h"
 #include "ui_mainwindow.h"
+#include <algorithm>
 #include <map>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -17,8 +18,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// Dichiarazione variabili globali
 QString fileName;
 std::vector<Olympiad> array;
+std::map<std::string, short> medaglie_per_nazione;
 
 void MainWindow::open_file()
 {
@@ -35,11 +38,12 @@ void MainWindow::open_file()
 void MainWindow::on_pushButton_clicked()
 {
     open_file();
+    this->ui->textOutput->setText("");
 }
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    if (array.size() == 0) {
+    if (!fileName.toStdString().size()) {
         QMessageBox err;
         err.setText("ERR: No File Selected");
         err.exec();
@@ -65,8 +69,69 @@ void MainWindow::on_pushButton_3_clicked()
         err.setText("ERR: No File Selected");
         err.exec();
     } else {
-        std::map<std::string, short> medaglie_per_nazione;
+        medaglie_per_nazione.clear();
+        QString log = "Il numero di medaglie per nazione: \n\n";
         for (auto el : array) {
+            medaglie_per_nazione[el.getCountry()]++;
         }
+
+        for (auto el : medaglie_per_nazione) {
+            log += (QString::fromStdString(el.first) + ": " + QString::number(el.second) + "\n");
+        }
+
+        this->ui->textOutput->setText(log);
+    }
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    if (!fileName.toStdString().size()) {
+        QMessageBox err;
+        err.setText("ERR: No File Selected");
+        err.exec();
+    } else {
+        QString log = "Le nazioni con almeno 5 medaglie: \n\n";
+        medaglie_per_nazione.clear();
+
+        for (auto el : array) {
+            medaglie_per_nazione[el.getCountry()]++;
+        }
+
+        for (auto el : medaglie_per_nazione) {
+            if (el.second >= 5) {
+                log += (QString::fromStdString(el.first) + "\n");
+            }
+        }
+
+        this->ui->textOutput->setText(log);
+    }
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    if (!fileName.toStdString().size()) {
+        QMessageBox err;
+        err.setText("ERR: No File Selected");
+        err.exec();
+    } else {
+        std::map<std::string, short> giorno_medaglie;
+        QString log = "Giorno in cui sono state assegnate piu' medaglie:\n\n";
+
+        for (auto el : array) {
+            giorno_medaglie[el.getDate()]++;
+        }
+
+        short temp = 0;
+        std::string temp_s;
+
+        for (auto el : giorno_medaglie) {
+            if (el.second > temp) {
+                temp_s = el.first;
+                temp = el.second;
+            }
+        }
+
+        log += QString::fromStdString(temp_s);
+        this->ui->textOutput->setText(log);
     }
 }

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>915</width>
     <height>600</height>
    </rect>
   </property>
@@ -19,8 +19,8 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>231</width>
-      <height>181</height>
+      <width>300</width>
+      <height>271</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -41,13 +41,34 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="text">
+        <string>3. Totale medaglie per nazione</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="text">
+        <string>4. Nazioni con almeno 5 medaglie</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_5">
+       <property name="text">
+        <string>5. Giorno con maggiore numero di medaglie assegnate</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QTextBrowser" name="textOutput">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>10</y>
+      <x>350</x>
+      <y>30</y>
       <width>461</width>
       <height>241</height>
      </rect>
@@ -59,7 +80,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>915</width>
      <height>21</height>
     </rect>
    </property>

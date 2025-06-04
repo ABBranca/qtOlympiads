@@ -32,6 +32,9 @@ public:
     QVBoxLayout *verticalLayout;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton_4;
+    QPushButton *pushButton_5;
     QTextBrowser *textOutput;
     QMenuBar *menubar;
     QMenu *menuMenu;
@@ -41,14 +44,14 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(800, 600);
+        MainWindow->resize(915, 600);
         actionOpen_File = new QAction(MainWindow);
         actionOpen_File->setObjectName("actionOpen_File");
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         verticalLayoutWidget = new QWidget(centralwidget);
         verticalLayoutWidget->setObjectName("verticalLayoutWidget");
-        verticalLayoutWidget->setGeometry(QRect(20, 10, 231, 181));
+        verticalLayoutWidget->setGeometry(QRect(20, 10, 300, 271));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(2);
         verticalLayout->setObjectName("verticalLayout");
@@ -63,13 +66,28 @@ public:
 
         verticalLayout->addWidget(pushButton_2);
 
+        pushButton_3 = new QPushButton(verticalLayoutWidget);
+        pushButton_3->setObjectName("pushButton_3");
+
+        verticalLayout->addWidget(pushButton_3);
+
+        pushButton_4 = new QPushButton(verticalLayoutWidget);
+        pushButton_4->setObjectName("pushButton_4");
+
+        verticalLayout->addWidget(pushButton_4);
+
+        pushButton_5 = new QPushButton(verticalLayoutWidget);
+        pushButton_5->setObjectName("pushButton_5");
+
+        verticalLayout->addWidget(pushButton_5);
+
         textOutput = new QTextBrowser(centralwidget);
         textOutput->setObjectName("textOutput");
-        textOutput->setGeometry(QRect(300, 10, 461, 241));
+        textOutput->setGeometry(QRect(350, 30, 461, 241));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 21));
+        menubar->setGeometry(QRect(0, 0, 915, 21));
         menuMenu = new QMenu(menubar);
         menuMenu->setObjectName("menuMenu");
         MainWindow->setMenuBar(menubar);
@@ -91,6 +109,9 @@ public:
         actionOpen_File->setText(QCoreApplication::translate("MainWindow", "Open File", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "1. Apri File", nullptr));
         pushButton_2->setText(QCoreApplication::translate("MainWindow", "2. Visualizza dati in ordine alfabetico", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("MainWindow", "3. Totale medaglie per nazione", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("MainWindow", "4. Nazioni con almeno 5 medaglie", nullptr));
+        pushButton_5->setText(QCoreApplication::translate("MainWindow", "5. Giorno con maggiore numero di medaglie assegnate", nullptr));
         menuMenu->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
     } // retranslateUi
 
