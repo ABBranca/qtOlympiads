@@ -47,9 +47,9 @@ void OlympiadFromCSV(const std::string &filename, std::vector<Olympiad> &dati)
 std::string Olympiad::descrizione() const
 {
     // restituisce una stringa con tutti gli elementi di una singola istanza
-    return this->name + ", " + this->familyname + ", " + this->country + ", "
-           + std::to_string(this->age) + ", " + this->sex + ", " + this->sport + ", "
-           + this->type_of_medal + ", " + this->date + "\n";
+    return this->name + "," + this->familyname + "," + this->country + ","
+           + std::to_string(this->age) + "," + this->sex + "," + this->sport + ","
+           + this->type_of_medal + "," + this->date + "\n";
 }
 
 std::string Olympiad::getName() const
@@ -85,4 +85,44 @@ std::string Olympiad::getDate() const
 std::string Olympiad::getCountry() const
 {
     return country;
+}
+
+void Olympiad::setName(const std::string &newName)
+{
+    name = newName;
+}
+
+void Olympiad::setFamilyname(const std::string &newFamilyname)
+{
+    familyname = newFamilyname;
+}
+
+void Olympiad::setCountry(const std::string &newCountry)
+{
+    country = newCountry;
+}
+
+void Olympiad::setAge(short newAge)
+{
+    age = newAge;
+}
+
+void Olympiad::setSex(const std::string &newSex)
+{
+    sex = newSex;
+}
+
+void Olympiad::setSport(const std::string &newSport)
+{
+    sport = newSport;
+}
+
+void Olympiad::setType_of_medal(const std::string &newType_of_medal)
+{
+    type_of_medal = newType_of_medal;
+}
+
+void Olympiad::setDate(const std::string &newDate)
+{
+    date = newDate;
 }

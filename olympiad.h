@@ -24,6 +24,14 @@ public:
     std::string getType_of_medal() const;
     std::string getDate() const;
     std::string getCountry() const;
+    void setName(const std::string &newName);
+    void setFamilyname(const std::string &newFamilyname);
+    void setCountry(const std::string &newCountry);
+    void setAge(short newAge);
+    void setSex(const std::string &newSex);
+    void setSport(const std::string &newSport);
+    void setType_of_medal(const std::string &newType_of_medal);
+    void setDate(const std::string &newDate);
 };
 
 void OlympiadFromCSV(const std::string &filename, std::vector<Olympiad> &dati);

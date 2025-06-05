@@ -22,6 +22,8 @@ MainWindow::~MainWindow()
 QString fileName;
 std::vector<Olympiad> array;
 std::map<std::string, short> medaglie_per_nazione;
+short nuove_aggiunte = 0;
+std::string path;
 
 void MainWindow::open_file()
 {
@@ -30,7 +32,7 @@ void MainWindow::open_file()
                                             "data/",
                                             tr("CSV Files (*.csv)"));
 
-    std::string path = fileName.toLocal8Bit().constData();
+    path = fileName.toLocal8Bit().constData();
     qDebug() << path;
     OlympiadFromCSV(path, array);
 }
@@ -153,8 +155,82 @@ void MainWindow::on_pushButton_6_clicked()
             cont++;
         }
 
-        float media = somma / cont;
-        log += QString::number(media) + " anni.";
+        float media;
+        if (cont) {
+            media = somma / cont;
+            log += QString::number(media) + " anni.";
+        } else {
+            log = "Non ci sono atlete che hanno vinto un oro.";
+        }
+
+        this->ui->textOutput->setText(log);
+    }
+}
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    if (!fileName.toStdString().size()) {
+        QMessageBox err;
+        err.setText("ERR: No File Selected");
+        err.exec();
+    } else {
+        bool valid = this->ui->lineName->text().size() && this->ui->line_familyname->text().size()
+                     && this->ui->line_country->text().size() && this->ui->line_sport->text().size()
+                     && this->ui->spin_age->text().size() && this->ui->combo_sex
+                     && this->ui->combo_typeofmedal;
+
+        if (valid) {
+            QString log = "Aggiunti i seguenti dati: \n\n";
+            Olympiad o;
+            o.setName(this->ui->lineName->text().toStdString());
+            o.setFamilyname(this->ui->line_familyname->text().toStdString());
+            o.setCountry(this->ui->line_country->text().toStdString());
+            o.setAge(this->ui->spin_age->value());
+            o.setSex(this->ui->combo_sex->currentText().toStdString());
+            o.setSport(this->ui->line_sport->text().toStdString());
+            o.setType_of_medal(this->ui->combo_typeofmedal->currentText().toStdString());
+            o.setDate(this->ui->dateEdit->text().toStdString());
+            qDebug() << o.getDate();
+            array.push_back(o);
+            nuove_aggiunte++;
+            log += QString::fromStdString(o.descrizione());
+
+            {
+                this->ui->lineName->clear();
+                this->ui->line_familyname->clear();
+                this->ui->line_country->clear();
+                this->ui->line_sport->clear();
+                this->ui->combo_sex->clear();
+                this->ui->combo_typeofmedal->clear();
+                this->ui->spin_age->clear();
+            }
+
+            this->ui->textOutput->setText(log);
+
+        } else {
+            QMessageBox err;
+            err.setText("ERR: Invalid Input");
+            err.exec();
+        }
+    }
+}
+
+void MainWindow::on_pushButton_8_clicked()
+{
+    if (!fileName.toStdString().size()) {
+        QMessageBox err;
+        err.setText("ERR: No File Selected");
+        err.exec();
+    } else if (!nuove_aggiunte) {
+        QMessageBox err;
+        err.setText("ERR: No additional data was given");
+        err.exec();
+    } else {
+        QString log = "Nuovi dati salvati correttamente. ";
+        std::ofstream fout(path, std::ios::app);
+        for (int i = array.size() - nuove_aggiunte - 1; i < array.size(); ++i) {
+            fout << array[i].descrizione();
+        }
         this->ui->textOutput->setText(log);
     }
 }
